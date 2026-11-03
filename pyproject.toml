@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=64"]
+backend = "setuptools"
+
+[project]
+name = "santorini-harness-api"
+version = "0.1.0"
+description = "Santorini game engine harness API"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+py-modules = [
+    "santorini_types",
+    "santorini_engine",
+    "santorini_harness",
+    "run_santorini",
+    "starter_bot",
+]
+
+[tool.pyright]
+# The analyzer may run on an interpreter without the package installed (e.g. the
+# global python, which also cannot resolve dynamic editable .pth files on 3.11),
+# so src/ must be on the analysis path regardless of environment.
+extraPaths = ["src"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "EXE"]
+
+[tool.ruff.lint.isort]
+known-first-party = [
+    "santorini_types",
+    "santorini_engine",
+    "santorini_harness",
+    "starter_bot",
+]
